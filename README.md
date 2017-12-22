@@ -34,7 +34,9 @@ Spring? CDI? Guice? Is there room for Dagger?
 
 It never stops. There's no single superior solution. Set your goals and see what fits to you.
 
-# In case you need JVM tools in Linux to experiments by yourself
+# JVM tools in Linux
+
+In case you need JVM tools in Linux to experiments by yourself
 
 Install SDKMAN
 
