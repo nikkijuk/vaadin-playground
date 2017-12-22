@@ -23,8 +23,11 @@ Vaadin 10 is in horizon and will integrate to JS world differently, dropping eff
 Larger standard JVM stack still needs to be challanged
 
 Java itself just works, but Kotlin might be effective clean alternative?
+
 Maven, err.., is complicated, still better than ANT, but could Gradle help here?
+
 JPA and Hibernate are used widely, but could we remove complicated abstractions with JOOQ, QueryDSL, ..?
+
 Spring? CDI? Guice? Is there room for Dagger?
 
 # Learning is your everyday job
