@@ -2,6 +2,7 @@ package com.example.vaadin8binder;
 
 import com.vaadin.data.Binder;
 import com.vaadin.data.ValidationException;
+import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
 import com.vaadin.annotations.Theme;
@@ -12,12 +13,12 @@ public class Vaadin8binderUI extends UI{
 	// used same names as in bean to simplify binding
 	private TextField username = new TextField("Username");
 	private TextField email = new TextField("Email");
-	private TextField password = new TextField("password");
+	private TextField password = new TextField("Password");
+    private TextField secret = new TextField("Secret");
+    private CheckBox register = new CheckBox("Register");
 
-	Label messages = new Label ();
-
-    Label debug = new Label ("Debug");
-
+    private Label messages = new Label ();
+    private Label debug = new Label ("Debug");
 
     private Button doLogin = new Button ("Login");
 
@@ -27,13 +28,20 @@ public class Vaadin8binderUI extends UI{
 	@Override
 	protected void init(VaadinRequest request){
 
+	    binder.forMemberField(register);
+
 		// define username binding, is value is not given it's empty
 		binder.forMemberField(username).withNullRepresentation("");
 
 		// define email binding, is value is not given it's empty
 		binder.forMemberField(email).withNullRepresentation("");
 
-		// close bindings which are done with forMemberField
+        binder.forMemberField(secret)
+                .withNullRepresentation("")
+                .withConverter(new StringToBigDecimalConverter("Conversion error"));
+
+
+        // close bindings which are done with forMemberField
 		binder.bindInstanceFields(this);
 
 		// add password validation
@@ -57,7 +65,7 @@ public class Vaadin8binderUI extends UI{
         doLogin.addClickListener(e -> login(login));
 
         VerticalLayout layout = new VerticalLayout();
-		layout.addComponents(username, email, password, messages, doLogin, debug);
+		layout.addComponents(username, email, password, secret, register, messages, doLogin, debug);
 
 		setContent(layout);
 	}
