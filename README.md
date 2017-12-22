@@ -18,6 +18,8 @@ Vaadin itself has come to release 8, which has simplified backend api in compari
 
 Vaadin 10 is in horizon and will integrate to JS world differently, dropping efficiently dependency to GWT
 
+Vaadin 10 aka Flow is interesting theme, as it brings new browser standards like Web Components in fingers of Java developers
+
 # JVM based web development evolves
 
 Larger standard JVM stack still needs to be challanged
