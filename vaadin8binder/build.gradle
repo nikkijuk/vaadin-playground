@@ -3,3 +3,17 @@
 plugins {
   id 'com.devsoap.plugin.vaadin' version '1.2.6'
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// added vaadin pre release repository
+// see maven config at: https://vaadin.com/framework/releases
+
+repositories {
+    maven { url "https://maven.vaadin.com/vaadin-prereleases" }
+}
+
+vaadin {
+    version '8.2.0.rc1'
+}
