@@ -14,6 +14,10 @@ This experiment is prepared using vaadin-gradle plugin
 
 https://github.com/johndevs/gradle-vaadin-plugin/wiki/Getting-Started-on-the-console
 
+# IDE
+
+Code has been written using IDEA community edition. Support for Gradle is good amd Java code editing works nicely.
+
 # JVM tools in Linux
 
 In case you need JVM tools in Linux to experiment by yourself
