@@ -1,9 +1,6 @@
 package com.example.vaadin8binder;
 
-import com.vaadin.data.Binder;
-import com.vaadin.data.BinderValidationStatus;
-import com.vaadin.data.ValidationException;
-import com.vaadin.data.ValidationResult;
+import com.vaadin.data.*;
 import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
@@ -27,6 +24,7 @@ public class Vaadin8binderUI extends UI{
 
     private Button doLogin = new Button ("Login");
     private Button doValidate = new Button ("Validate");
+    private Button doIsValid = new Button ("isValid");
 
     // binder tied to pojo
 	private Binder<Login> binder = new Binder<>(Login.class);
@@ -34,12 +32,14 @@ public class Vaadin8binderUI extends UI{
 	@Override
 	protected void init(VaadinRequest request){
 
+	    // simplest form of defining binding
+        // bindings for all member fields are closed when Binder.bindInstanceFields () is called
 	    binder.forMemberField(register);
 
-		// define username binding, is value is not given it's empty
+		// define username binding, if value is not given it's empty
 		binder.forMemberField(username).withNullRepresentation("");
 
-		// define email binding, is value is not given it's empty
+		// define email binding, if value is not given it's empty
 		binder.forMemberField(email).withNullRepresentation("");
 
 		// define secret code, null presentation, and converter
@@ -62,6 +62,8 @@ public class Vaadin8binderUI extends UI{
 		// set label for bean level error messages
         binder.setStatusLabel(messages);
 
+        binder.addStatusChangeListener(e -> validationStatusChanged(e));
+
         // create login bean
         Login login = new Login();
 
@@ -71,19 +73,28 @@ public class Vaadin8binderUI extends UI{
         // writes value back to login pojo
         doLogin.addClickListener(e -> login(login));
         doValidate.addClickListener(e -> validateBinder());
+        doIsValid.addClickListener(e -> isValidBinder());
 
         VerticalLayout layout = new VerticalLayout();
-		layout.addComponents(username, email, password, secret, register, messages, debug, doLogin, doValidate);
+		layout.addComponents(username, email, password, secret, register, messages, debug, doLogin, doValidate, doIsValid);
 		setContent(layout);
 	}
+    private void validationStatusChanged (StatusChangeEvent e) {
+	    //  this works
+        // field level validation result can be queried using StatusChangeEvent.hasValidationErrors()
+        boolean valid = !e.hasValidationErrors();
+        doLogin.setEnabled(valid);
+    }
 
     private void validateBinder() {
         try {
             if (binder.hasChanges()) {
                 // error happens here
+                // validate tries to run bean level validators and error is fired as there's no bound bean
+                // as we use buffered mode (readBean/WriteBean) instead of unbuffered (setBean)
                 // see: https://github.com/vaadin/framework/issues/9955
                 BinderValidationStatus<Login> validationStatus = binder.validate();
-                List<ValidationResult> validationErrors = validationStatus.getValidationErrors(); // both bean & field errors
+                List<ValidationResult> validationErrors = validationStatus.getValidationErrors();
                 boolean valid = validationErrors.isEmpty();
                 if (!valid) {
                     String msg = validationErrors
@@ -101,10 +112,24 @@ public class Vaadin8binderUI extends UI{
         }
     }
 
+    private void isValidBinder() {
+        try {
+            // error happens here. works similarly to validate(), look above for description
+            // see: https://github.com/vaadin/framework/issues/9955
+            boolean valid = binder.isValid();
+            debug.setValue("binder valid : "+valid);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            debug.setValue(e.getMessage());
+        }
+    }
+
     private void login(Login l) {
         try {
             if (binder.hasChanges()) {
-                binder.writeBean(l); // write buffered changes back to bean
+                // write buffered changes back to bean
+                // bean level validation happends here as expected
+                binder.writeBean(l);
                 debug.setValue("values written back to bean");
             } else {
                 debug.setValue("no changes at binder");
@@ -115,6 +140,12 @@ public class Vaadin8binderUI extends UI{
         }
     }
 
+    /**
+     * Bean level validation logic for user identity
+     *
+     * @param l
+     * @return
+     */
     private boolean checkUserIdentity(Login l) {
         boolean result = l.getEmail().length() > 0 || l.getUsername().length() > 0;
         //debug.setValue("User id check: "+result);
