@@ -1,0 +1,7 @@
+@import "../valo/valo.scss";
+
+@mixin vaadin8binder {
+	@include valo;
+
+	/* Add your theme selectors here */
+}
