@@ -15,5 +15,5 @@ repositories {
 }
 
 vaadin {
-    version '8.2.0.rc1'
+    version '8.2.0'
 }

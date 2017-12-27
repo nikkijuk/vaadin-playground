@@ -21,6 +21,7 @@ public class Vaadin8binderUI extends UI{
 
     private Label messages = new Label ();
     private Label debug = new Label ("Debug");
+    private Label log = new Label ("Log");
 
     private Button doLogin = new Button ("Login");
     private Button doValidate = new Button ("Validate");
@@ -36,10 +37,10 @@ public class Vaadin8binderUI extends UI{
         // bindings for all member fields are closed when Binder.bindInstanceFields () is called
 	    binder.forMemberField(register);
 
-		// define username binding, if value is not given it's empty
+		// define username binding, if value is not given it's empty (=null)
 		binder.forMemberField(username).withNullRepresentation("");
 
-		// define email binding, if value is not given it's empty
+		// define email binding, if value is not given it's empty (=null)
 		binder.forMemberField(email).withNullRepresentation("");
 
 		// define secret code, null presentation, and converter
@@ -76,7 +77,7 @@ public class Vaadin8binderUI extends UI{
         doIsValid.addClickListener(e -> isValidBinder());
 
         VerticalLayout layout = new VerticalLayout();
-		layout.addComponents(username, email, password, secret, register, messages, debug, doLogin, doValidate, doIsValid);
+		layout.addComponents(username, email, password, secret, register, messages, debug, log, doLogin, doValidate, doIsValid);
 		setContent(layout);
 	}
     private void validationStatusChanged (StatusChangeEvent e) {
@@ -147,8 +148,10 @@ public class Vaadin8binderUI extends UI{
      * @return
      */
     private boolean checkUserIdentity(Login l) {
-        boolean result = l.getEmail().length() > 0 || l.getUsername().length() > 0;
-        //debug.setValue("User id check: "+result);
-        return result;
+        // note: this works as we have given empty as null thru null representation on binding
+        boolean valid = l.getEmail() != null || l.getUsername() != null;
+        String logMsg = "email '"+l.getEmail()+"' and username '"+l.getUsername()+"' validated, validation result = "+valid;
+        log.setValue(logMsg);
+        return valid;
     }
 }
