@@ -62,6 +62,8 @@ Code has been written using IDEA community edition. Support for Gradle is good a
 
 It seems that gradle-addon picks theme from latest version of vaadin (currently 8.1.7) and not one that I've defined (8.2.0.rc1). 
 
+It seems that gradle-addon support for Gradle 4.4. is not finished yet and thus earlier version (4.3.1) needs to be used.
+
 # JVM tools in Linux
 
 In case you need JVM tools in Linux to experiment by yourself
