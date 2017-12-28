@@ -24,7 +24,7 @@ Write build.gradle to root of project directory
 // Tell Gradle to add Vaadin support
 
 plugins {
-  id 'com.devsoap.plugin.vaadin' version '1.2.6'
+  id 'com.devsoap.plugin.vaadin' version '1.3.0'
 }
 
 sourceCompatibility = 1.8
