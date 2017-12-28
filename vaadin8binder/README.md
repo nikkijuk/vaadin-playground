@@ -4,9 +4,9 @@ Vaadin experiment with vaadin 8 binder
 
 # Why this repository exists
 
-Vaadin 8.2 exteds Binder paradigm which has existed since 8.0.
+Vaadin 8.2.0 exteds Binder paradigm which has existed since 8.0.
 
-Vaadin 8.2 rc1 Binder doesn't seem to work as expected what comes to buffered edits using bean level validator.
+Vaadin 8.2.0 Binder doesn't seem to work as expected what comes to buffered edits using bean level validator.
 
 # Experiment setup
 
@@ -38,7 +38,7 @@ repositories {
 }
 
 vaadin {
-    version '8.2.0.rc1'
+    version '8.2.0'
 }
 ```
 
@@ -58,12 +58,6 @@ If there's problems try
 
 Code has been written using IDEA community edition. Support for Gradle is good and Java code editing works nicely.
 
-# Limitations
-
-It seems that gradle-addon picks theme from latest version of vaadin (currently 8.1.7) and not one that I've defined (8.2.0.rc1). 
-
-It seems that gradle-addon support for Gradle 4.4. is not finished yet and thus earlier version (4.3.1) needs to be used.
-
 # JVM tools in Linux
 
 In case you need JVM tools in Linux to experiment by yourself
@@ -74,5 +68,5 @@ $ curl -s https://get.sdkman.io | bash
 
 Open a new terminal and install tool
 
-$ sdk install gradle 4.3.1
+$ sdk install gradle 4.4.1
 

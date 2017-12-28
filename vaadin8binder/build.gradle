@@ -1,7 +1,17 @@
 // Tell Gradle to add Vaadin support
 
+// Plugins wiki is at
+// https://github.com/johndevs/gradle-vaadin-plugin/wiki
+
+// IDEA configuration is at
+// https://github.com/johndevs/gradle-vaadin-plugin/wiki/Getting-Started-in-Intellij-IDEA
+
 plugins {
-  id 'com.devsoap.plugin.vaadin' version '1.2.6'
+  // Tell Gradle to add Vaadin support
+  id 'com.devsoap.plugin.vaadin' version '1.3.0'
+
+  // Tell Gradle that we are working in idea
+  id 'idea'
 }
 
 sourceCompatibility = 1.8
@@ -14,6 +24,18 @@ repositories {
     maven { url "https://maven.vaadin.com/vaadin-prereleases" }
 }
 
+// configuration options at
+// https://github.com/johndevs/gradle-vaadin-plugin/wiki/Tasks-and-configuration-DSL
 vaadin {
+
+    // used vaadin version, if omitted most recently released is used
     version '8.2.0'
+
+    // you can see the server logs directly as you run the application
+    logToConsole true
+}
+
+// Vaadin plugin requires Gradle 4.0+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4.1'
 }
