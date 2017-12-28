@@ -62,14 +62,15 @@ public class Vaadin8binderUI extends UI{
 
 		// set label for bean level error messages
         binder.setStatusLabel(messages);
-
-        binder.addStatusChangeListener(e -> validationStatusChanged(e));
-
+        
         // create login bean
         Login login = new Login();
 
         // write bean to form, buffered
         binder.readBean(login);
+
+        // listen validation status changes
+        binder.addStatusChangeListener(e -> validationStatusChanged(e));
 
         // writes value back to login pojo
         doLogin.addClickListener(e -> login(login));
@@ -82,9 +83,14 @@ public class Vaadin8binderUI extends UI{
 	}
     private void validationStatusChanged (StatusChangeEvent e) {
 	    //  this works
+
+        // changes can be queried by asking binder instance from event
+        boolean hasChanges = e.getBinder().hasChanges();
+
         // field level validation result can be queried using StatusChangeEvent.hasValidationErrors()
-        boolean valid = !e.hasValidationErrors();
-        doLogin.setEnabled(valid);
+        boolean isValid = !e.hasValidationErrors();
+
+        doLogin.setEnabled(hasChanges && isValid);
     }
 
     private void validateBinder() {
@@ -96,8 +102,8 @@ public class Vaadin8binderUI extends UI{
                 // see: https://github.com/vaadin/framework/issues/9955
                 BinderValidationStatus<Login> validationStatus = binder.validate();
                 List<ValidationResult> validationErrors = validationStatus.getValidationErrors();
-                boolean valid = validationErrors.isEmpty();
-                if (!valid) {
+                boolean isValid = validationErrors.isEmpty();
+                if (!isValid) {
                     String msg = validationErrors
                             .stream()
                             .map(error -> error.getErrorMessage())
@@ -117,8 +123,8 @@ public class Vaadin8binderUI extends UI{
         try {
             // error happens here. works similarly to validate(), look above for description
             // see: https://github.com/vaadin/framework/issues/9955
-            boolean valid = binder.isValid();
-            debug.setValue("binder valid : "+valid);
+            boolean isValid = binder.isValid();
+            debug.setValue("binder valid : "+isValid);
         } catch (Exception e) {
             //e.printStackTrace();
             debug.setValue(e.getMessage());
@@ -149,9 +155,11 @@ public class Vaadin8binderUI extends UI{
      */
     private boolean checkUserIdentity(Login l) {
         // note: this works as we have given empty as null thru null representation on binding
-        boolean valid = l.getEmail() != null || l.getUsername() != null;
-        String logMsg = "email '"+l.getEmail()+"' and username '"+l.getUsername()+"' validated, validation result = "+valid;
+        String email = l.getEmail();
+        String username = l.getUsername();
+        boolean isValid = email != null || username != null;
+        String logMsg = "email '"+email+"' and username '"+ username +"' validated, validation result = "+isValid;
         log.setValue(logMsg);
-        return valid;
+        return isValid;
     }
 }
