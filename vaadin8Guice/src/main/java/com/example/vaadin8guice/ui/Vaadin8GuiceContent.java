@@ -12,11 +12,15 @@ import com.vaadin.ui.VerticalLayout;
 public class Vaadin8GuiceContent extends Composite {
 
     @Inject
-    Vaadin8GuiceContent(Vaadin8GuiceHeader header, Vaadin8GuiceViewContainer myViewContainer){
-        final VerticalLayout layout = new VerticalLayout(header, myViewContainer);
+    Vaadin8GuiceContent(Vaadin8GuiceHeader myHeader, Vaadin8GuiceViewContainer myViewContainer){
 
+        // layout contains header and placeholder for view content
+        final VerticalLayout layout = new VerticalLayout(myHeader, myViewContainer);
+
+        // define how header and content are sharing available space
         layout.setExpandRatio(myViewContainer, 1);
 
+        // set layout in use
         setCompositionRoot(layout);
     }
 }

@@ -2,13 +2,15 @@
 
 Vaadin experiment with vaadin 8 guice add on
 
-This experminent contains previous experimennt with gradle-addon
+This experiment contains previous experimennt with gradle-addon
 
 # Why this repository exists
 
-Vaadin 8.2.0 has CDI support "almost" natively for Spring and CDI
+Vaadin 8.2.0 has DI support "almost" natively for Spring and CDI
 
 Vaadin 8.2.0 Guice support comes with vaadin guice addon
+
+Vaadin Guice support is fork of Spring support addon, but has possibly taken it's own direction
 
 https://vaadin.com/directory/component/guice-vaadin-integration
 
@@ -17,6 +19,8 @@ https://vaadin.com/directory/component/guice-vaadin-integration
 This experiment is prepared using vaadin-gradle plugin
 
 https://github.com/johndevs/gradle-vaadin-plugin/wiki/Getting-Started-on-the-console
+
+There was some problems getting things to compile, and I needed to revert to Gradle 4.3.1 from 4.4.1 
 
 # Project setup
 
@@ -41,10 +45,6 @@ repositories {
     maven { url "https://maven.vaadin.com/vaadin-prereleases" }
 }
 
-dependencies {
-  compile group: 'com.vaadin', name: 'guice-vaadin', version:'2.0.1-vaadin8'
-}
-
 vaadin {
     version '8.2.0'
 }
@@ -64,7 +64,31 @@ If there's problems try
 
 # Adding guice
 
+Guice add on needs to be added as dependency to build.gradle 
 
+```
+dependencies {
+  compile group: 'com.vaadin', name: 'guice-vaadin', version:'2.0.1-vaadin8'
+}
+```
+
+# Vaadin Guice docs 
+
+Documentation is scarce. Best source to get overview could be video tutorial from developer of addon
+
+https://www.youtube.com/watch?v=cFpHlEhJBZY
+
+Otherwise I'd advice to get to the sources
+
+https://github.com/berndhopp/guice
+
+# Vaadin Guice sample apps
+
+There's two samples which aren't really too deeply documented, but you can play with them
+
+https://github.com/berndhopp/guiceexample
+
+https://github.com/berndhopp/guice-example
 
 # IDE
 

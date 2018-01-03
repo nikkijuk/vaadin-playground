@@ -12,7 +12,10 @@ import com.vaadin.ui.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@GuiceView("login") // all other views except start view have name
+/**
+ * Login view. Here's content from previous experiment
+ */
+@GuiceView("login") // all other views except start view need to have unique name
 public class Vaadin8GuiceLoginView extends Panel implements View {
 
     // used same names as in bean to simplify binding

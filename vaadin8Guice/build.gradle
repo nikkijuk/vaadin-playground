@@ -46,6 +46,7 @@ vaadin {
 }
 
 // Vaadin plugin requires Gradle 4.0+
+// error messages with 4.4.1 were not really helpful, but 4.3.1 worker ok
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3.1'
 }

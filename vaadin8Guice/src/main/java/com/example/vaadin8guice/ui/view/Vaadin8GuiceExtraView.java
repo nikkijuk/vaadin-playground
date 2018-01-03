@@ -5,7 +5,10 @@ import com.vaadin.guice.annotation.GuiceView;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Panel;
 
-@GuiceView("extra") // all other views except start view have name
+/**
+ * Extra view
+ */
+@GuiceView("extra") // all other views except start view need to have unique name
 public class Vaadin8GuiceExtraView extends Panel implements View {
 
     @Inject

@@ -20,6 +20,7 @@ public class Vaadin8GuiceHeader extends HorizontalLayout {
     Vaadin8GuiceHeader(@NavigableViewClasses Map<String, Class<? extends View>> viewClasses) {
         setWidth("100%");
 
+        // Navigation is built here
         for (String uiFragment : viewClasses.keySet()) {
             Button navigationButton = new Button(
                     "navigate to " + uiFragment,
