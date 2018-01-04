@@ -1,18 +1,14 @@
-# vaadin 8 guice
+# vaadin 8 theme
 
-Vaadin experiment with vaadin 8 guice add on
+Vaadin experiment with customized vaadin theme
 
-This experiment contains previous experimennt with gradle-addon
+This experiment contains previous experiments with gradle-addon and guice-addon 
 
 # Why this repository exists
 
-Vaadin 8.2.0 has DI support "almost" natively for Spring and CDI
+Vaadin 8.2.0 has wonderful Valo theme, which can be extended and customized
 
-Vaadin 8.2.0 Guice support comes with vaadin guice addon
-
-Vaadin Guice support is fork of Spring support addon, but has possibly taken it's own direction
-
-https://vaadin.com/directory/component/guice-vaadin-integration
+Vaadin valo theme is customized by extending it or overwriting property values
 
 # Experiment setup
 
@@ -30,21 +26,15 @@ Write build.gradle to root of project directory
 
 ```
 // Tell Gradle to add Vaadin support
-
 plugins {
   id 'com.devsoap.plugin.vaadin' version '1.3.0'
 }
 
+// set source level
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-// added vaadin pre release repository
-// see maven config at: https://vaadin.com/framework/releases
-
-repositories {
-    maven { url "https://maven.vaadin.com/vaadin-prereleases" }
-}
-
+// define vaadin version
 vaadin {
     version '8.2.0'
 }
@@ -89,6 +79,34 @@ There's two samples which aren't really too deeply documented, but you can play 
 https://github.com/berndhopp/guiceexample
 
 https://github.com/berndhopp/guice-example
+
+# creating custom theme
+
+Create new theme using gradle-addon
+
+- gradle vaadinCreateTheme --name=kaamos
+
+# compiling changes
+
+Vaadin gradle-addon manages to hot deploy at least some changes
+
+When necessary clean project, compile theme by hand and test.
+
+- gradle clean
+
+- gradle vaadinThemeCompile
+
+- gradle vaadinRun
+
+Remember to refresh browser caches or your css might not be loaded 
+
+# Vaadin theming documents
+
+https://demo.vaadin.com/valo-theme/
+
+https://vaadin.com/framework/theming
+
+https://vaadin.com/docs/v8/framework/themes/themes-overview.html
 
 # IDE
 
