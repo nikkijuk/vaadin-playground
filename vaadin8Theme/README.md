@@ -86,6 +86,12 @@ Create new theme using gradle-addon
 
 - gradle vaadinCreateTheme --name=kaamos
 
+Remember to give theme meaningful name, here 'Kaamos'
+
+Theme will be created to directory
+
+- src/main/resources/VAADIN/themes
+
 # compiling changes
 
 Vaadin gradle-addon manages to hot deploy at least some changes
