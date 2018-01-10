@@ -35,8 +35,7 @@ public class CustomBinder<BEAN> extends Binder<BEAN> {
         List<BindingValidationStatus<?>> bindingStatuses = validateFields(fireEvent);
         List<ValidationResult> beanStatus = Collections.emptyList(); // no bean validation, ever;
 
-        BinderValidationStatus<BEAN> validationStatus = new BinderValidationStatus<>
-                (this, bindingStatuses, beanStatus);
+        BinderValidationStatus<BEAN> validationStatus = new BinderValidationStatus<> (this, bindingStatuses, beanStatus);
 
         if (fireEvent) {
             getValidationStatusHandler().statusChange(validationStatus);
