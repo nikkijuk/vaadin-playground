@@ -4,6 +4,7 @@ import com.example.app.ui.model.Login;
 import com.google.inject.Inject;
 import com.vaadin.data.*;
 import com.vaadin.data.converter.StringToBigDecimalConverter;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.guice.annotation.GuiceView;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.*;
@@ -47,12 +48,6 @@ public class BinderView extends Panel implements View {
         // bindings for all member fields are closed when Binder.bindInstanceFields () is called
         binder.forMemberField(register);
 
-        // define username binding, if value is not given it's empty (=null)
-        binder.forMemberField(username).withNullRepresentation("");
-
-        // define email binding, if value is not given it's empty (=null)
-        binder.forMemberField(email).withNullRepresentation("");
-
         // define secret code, null presentation, and converter
         binder.forMemberField(secret)
                 .withNullRepresentation("")
@@ -60,6 +55,18 @@ public class BinderView extends Panel implements View {
 
         // close bindings which are done with forMemberField
         binder.bindInstanceFields(this);
+
+        // define username binding, if value is not given it's empty (=null)
+        binder.forField(username)
+                .withNullRepresentation("")
+                .withValidator(new StringLengthValidator("wrong length",2,15))
+                .bind("username");
+
+        // define email binding, if value is not given it's empty (=null)
+        binder.forField(email)
+                .withNullRepresentation("")
+                .withValidator(new StringLengthValidator("wrong length",3,20))
+                .bind("email");
 
         // add password validation
         binder.forField(password)
