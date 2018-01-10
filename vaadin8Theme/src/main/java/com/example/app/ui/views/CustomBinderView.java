@@ -1,6 +1,7 @@
 package com.example.app.ui.views;
 
 import com.example.app.ui.model.Login;
+import com.example.app.ui.util.CustomBinder;
 import com.google.inject.Inject;
 import com.vaadin.data.*;
 import com.vaadin.data.converter.StringToBigDecimalConverter;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  * Login view. Here's content from previous experiment
  */
 @GuiceView("form") // all other views except start view need to have unique name
-public class FormView extends Panel implements View {
+public class CustomBinderView extends Panel implements View {
 
     // used same names as in bean to simplify binding
     private TextField username = new TextField("Username");
@@ -33,10 +34,10 @@ public class FormView extends Panel implements View {
     private Button doIsValid = new Button ("isValid");
 
     // binder tied to pojo
-    private Binder<Login> binder = new Binder<>(Login.class);
+    private CustomBinder<Login> binder = new CustomBinder<>(Login.class);
 
     @Inject
-    FormView(){
+    CustomBinderView(){
         super("login view");
         init();
     }

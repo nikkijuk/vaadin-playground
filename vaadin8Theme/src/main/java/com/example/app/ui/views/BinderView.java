@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 /**
  * Login view. Here's content from previous experiment
  */
-@GuiceView("login") // all other views except start view need to have unique name
-public class LoginView extends Panel implements View {
+@GuiceView("binder") // all other views except start view need to have unique name
+public class BinderView extends Panel implements View {
 
     // used same names as in bean to simplify binding
     private TextField username = new TextField("Username");
@@ -36,7 +36,7 @@ public class LoginView extends Panel implements View {
     private Binder<Login> binder = new Binder<>(Login.class);
 
     @Inject
-    LoginView(){
+    BinderView(){
         super("login view");
         init();
     }
