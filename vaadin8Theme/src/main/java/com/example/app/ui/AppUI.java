@@ -5,6 +5,7 @@ import com.example.app.ui.util.SidebarLayout;
 import com.example.app.ui.util.TopMenuLayout;
 import com.example.app.ui.util.ViewContainer;
 import com.vaadin.guice.annotation.GuiceUI;
+import com.vaadin.navigator.PushStateNavigation;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
 import com.vaadin.annotations.Theme;
@@ -20,6 +21,7 @@ import com.vaadin.annotations.Theme;
  *
  * @GuiceUI defines layout of ui and in which conmponent view is shown
  */
+@PushStateNavigation
 @Theme("kaamos") // custom theme
 //@GuiceUI (content = TopMenuLayout.class, viewContainer = ViewContainer.class)
 @GuiceUI (content = SidebarLayout.class, viewContainer = ViewContainer.class)
