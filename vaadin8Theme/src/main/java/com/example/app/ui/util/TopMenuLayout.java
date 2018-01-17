@@ -12,15 +12,16 @@ import com.vaadin.ui.VerticalLayout;
 public class TopMenuLayout extends Composite {
 
     @Inject
-    TopMenuLayout(HorizontalButtonMenu uiMenu, ViewContainer uiContent){
+    TopMenuLayout(TopMenu menu, ViewContainer viewContainer){
 
-        // layout contains header and placeholder for view content
-        final VerticalLayout layout = new VerticalLayout(uiMenu, uiContent);
+        // mainLayout contains header and placeholder for view content
+        VerticalLayout mainLayout = new VerticalLayout(menu, viewContainer);
+        mainLayout.setSizeFull();
 
         // define how header and content are sharing available space
-        layout.setExpandRatio(uiContent, 1);
+        mainLayout.setExpandRatio(viewContainer, 1);
 
-        // set layout in use
-        setCompositionRoot(layout);
+        // set mainLayout in use
+        setCompositionRoot(mainLayout);
     }
 }

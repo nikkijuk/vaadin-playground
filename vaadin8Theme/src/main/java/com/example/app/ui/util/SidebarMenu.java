@@ -7,6 +7,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 import java.util.Map;
 
@@ -14,12 +15,16 @@ import java.util.Map;
  * Header for app
  */
 @UIScope // there is single instance in ui scope
-public class HorizontalButtonMenu extends HorizontalLayout {
+public class SidebarMenu extends VerticalLayout {
 
     @Inject
-    HorizontalButtonMenu(@NavigableViewClasses Map<String, Class<? extends View>> viewClasses) {
+    SidebarMenu(@NavigableViewClasses Map<String, Class<? extends View>> viewClasses) {
+        //setSizeFull();
+        setHeightUndefined();
         setWidth("100%");
+        //setWidthUndefined();
         setStyleName(KaamosTheme.KAAMOS_MENU);
+        setMargin(false);
 
         // Navigation is built here
         for (String viewName : viewClasses.keySet()) {
