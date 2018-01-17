@@ -114,6 +114,31 @@ https://vaadin.com/framework/theming
 
 https://vaadin.com/docs/v8/framework/themes/themes-overview.html
 
+# Vaadin side menus
+
+Vaadin has menubar included, but side menu needs some extra work
+
+Implementation classes in this project
+ 
+- SidebarMenu
+- SidebarLayout
+
+Here's one example how to do it by yourself
+
+https://github.com/alejandro-du/community-answers/tree/master/side-menu
+
+Please read here how it's done
+
+https://vaadin.com/blog/community-answer-implementing-a-side-menu-with-view-navigation
+
+Other example can be found here
+
+https://github.com/rolfsmeds/devday17-themedemo
+
+Rolfs example needs some explanations - and they are here
+
+https://www.youtube.com/watch?v=InHvMyZtAVY
+
 # IDE
 
 Code has been written using IDEA community edition. Support for Gradle is good and Java code editing works nicely.
