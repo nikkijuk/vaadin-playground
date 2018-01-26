@@ -43,7 +43,7 @@ public class HttpUtil {
             }
         } catch (IOException e) {
             // in case of emergency please allow logging
-            // e.printStackTrace();
+            e.printStackTrace();
         }
         return EMPTY_JSON; // empty object can be parsed without problems, it just won't contain data
 

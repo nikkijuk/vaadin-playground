@@ -1,5 +1,6 @@
 package com.example.app.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,9 +11,9 @@ import java.util.List;
 */
 public class FeedWrapper {
 
-    public String status;
-    public FeedHeaders feed; // header info, metadata of feed, not used
-    public List<FeedItem> items; // actual articles
+    public String status = "";
+    public FeedHeaders feed = new FeedHeaders (); // header info, metadata of feed, not used
+    public List<FeedItem> items = new ArrayList<>(); // actual articles
 
     public FeedWrapper(String status, FeedHeaders feed, List<FeedItem> items) {
         this.status = status;

@@ -23,9 +23,10 @@ import com.vaadin.ui.VerticalLayout;
 public class ExtraView extends Panel implements View {
 
     private TextField feedUrl = new TextField ();
+    private TextField posts = new TextField ();
 
 
-    private Grid<FeedItem> feed = new Grid <> ();
+    private Grid<FeedItem> feed = new Grid <> (FeedItem.class);
 
     @Inject
     ExtraView(){
@@ -35,7 +36,10 @@ public class ExtraView extends Panel implements View {
 
     protected void init(){
         VerticalLayout layout = new VerticalLayout();
-        layout.addComponents(feedUrl, feed);
+        feed.setColumns("title","author");
+        feed.setSizeFull();
+        layout.addComponents(feedUrl, posts, feed);
+        layout.setSizeFull();
         setContent(layout);
     }
 
@@ -48,7 +52,9 @@ public class ExtraView extends Panel implements View {
         String json = HttpUtil.getJson(url);
         System.out.println("json is :"+json);
         FeedWrapper feedWrapper = FeedUtil.convertToObjects(json);
-        System.out.println("found items :"+feedWrapper.getItems().size());
+        int postCount = feedWrapper.getItems().size();
+        System.out.println("found items :"+ postCount);
+        posts.setValue(""+postCount);
         feed.setItems(feedWrapper.getItems());
     }
 

@@ -11,7 +11,7 @@ public class FeedUtil {
     private FeedUtil() {} // helper class, not possible to instantiate
 
     // Xml to Json conversion api
-    private final static String RSS_TO_JSON_API_API = "https://api.rss2json.com/v1/api.json?rss_url=";
+    private final static String RSS_TO_JSON_API_API = "http://api.rss2json.com/v1/api.json?rss_url=";
 
     // Default feed used
     private final static String DEFAULT_RSS_URL ="http://rss.nytimes.com/services/xml/rss/nyt/Science.xml";

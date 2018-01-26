@@ -12,6 +12,8 @@ public class FeedHeaders {
     public String description;
     public String image;
 
+    public FeedHeaders () {};
+
     public FeedHeaders(String url, String title, String link, String author, String description, String image) {
         this.url = url;
         this.title = title;
