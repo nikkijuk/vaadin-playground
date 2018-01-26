@@ -1,0 +1,13 @@
+@import "addons.scss";
+@import "kaamos.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in kaamos.scss */
+
+// prefixes are removed as there shouldn't be style collisions
+//.kaamos {
+
+  @include addons;
+  @include kaamos;
+
+//}

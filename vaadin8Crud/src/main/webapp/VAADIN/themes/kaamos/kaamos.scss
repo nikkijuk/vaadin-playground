@@ -1,0 +1,58 @@
+// Valo contains some variables which can be used to customize item.
+
+// Valo variables might have nasty side effects, so when customizing theme
+// please see if some other elements are touched
+
+// See example of defining variables from:
+// https://github.com/vaadin/valo-demo/blob/master/src/main/webapp/VAADIN/themes/tests-valo-flat/_variables.scss
+
+$v-app-loading-text: "Kaamos";
+
+// Flat
+
+$v-font-family: "Roboto", sans-serif;
+$v-font-weight: 400;
+$v-font-weight--header: 400;
+$v-background-color: #fff;
+$v-focus-color: rgb(150,190,90);
+$v-luminance-threshold: 180;
+$v-border: 2px solid v-shade;
+$v-border-radius: 6px;
+$v-bevel: false;
+$v-gradient: false;
+$v-shadow: false;
+$v-textfield-bevel: false;
+$v-textfield-shadow: false;
+$v-link-text-decoration: false;
+$v-selection-overlay-padding-horizontal: 0;
+$v-selection-overlay-padding-vertical: 6px;
+$v-selection-item-height: 30px;
+$v-selection-item-border-radius: 0;
+$valo-menu-background-color: #eee;
+
+// Import valo after setting the parameters
+@import "../valo/valo.scss";
+
+@mixin kaamos {
+	@include valo;
+
+	/* Add your theme selectors here */
+
+    .kaamos-menu {
+
+         background: Lime;
+
+        .v-button {
+            background: Red;
+            color: yellow;
+        }
+    }
+
+    .kaamos-content {
+        .v-button {
+              background: Green;
+              color: yellow;
+          }
+    }
+
+}
