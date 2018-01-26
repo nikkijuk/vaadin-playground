@@ -98,6 +98,7 @@ public class BinderView extends Panel implements View {
         layout.addComponents(username, email, password, secret, register, messages, debug, log, doLogin, doValidate, doIsValid);
         setContent(layout);
     }
+
     private void validationStatusChanged (StatusChangeEvent e) {
         //  this works
 
