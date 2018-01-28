@@ -36,11 +36,20 @@ public class ExtraView extends Panel implements View {
 
     protected void init(){
         VerticalLayout layout = new VerticalLayout();
+
+        // configure visible fields
         feed.setColumns("title","author");
+        feed.addItemClickListener(this::showItem);
         feed.setSizeFull();
+
         layout.addComponents(feedUrl, posts, feed);
         layout.setSizeFull();
         setContent(layout);
+    }
+
+    private void showItem(Grid.ItemClick<FeedItem> feedItemItemClick) {
+        FeedItem item = feedItemItemClick.getItem();
+
     }
 
 
