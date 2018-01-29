@@ -5,22 +5,20 @@ import com.example.app.ui.model.FeedWrapper;
 import com.example.app.ui.model.Login;
 import com.example.app.ui.util.FeedUtil;
 import com.example.app.ui.util.HttpUtil;
+import com.example.app.ui.windows.FeedItemWindow;
 import com.google.inject.Inject;
 import com.vaadin.data.converter.StringToBigDecimalConverter;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.guice.annotation.GuiceView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 /**
  * Extra view
  */
-@GuiceView("extra") // all other views except start view need to have unique name
-public class ExtraView extends Panel implements View {
+@GuiceView("crud") // all other views except start view need to have unique name
+public class CrudView extends Panel implements View {
 
     private TextField feedUrl = new TextField ();
     private TextField posts = new TextField ();
@@ -29,7 +27,10 @@ public class ExtraView extends Panel implements View {
     private Grid<FeedItem> feed = new Grid <> (FeedItem.class);
 
     @Inject
-    ExtraView(){
+    private FeedItemWindow itemWindow;
+
+    @Inject
+    CrudView(){
         super("extra view");
         init ();
     }
@@ -49,7 +50,8 @@ public class ExtraView extends Panel implements View {
 
     private void showItem(Grid.ItemClick<FeedItem> feedItemItemClick) {
         FeedItem item = feedItemItemClick.getItem();
-
+        itemWindow.setFeedItem(item);
+        UI.getCurrent().addWindow(itemWindow);
     }
 
 
