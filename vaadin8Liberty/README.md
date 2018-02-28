@@ -60,13 +60,3 @@ you can take example from this repository and run it
 
 running happens exaclty like testing of generated skeleton
 
-
-Open app
-========
-
-Since WildFly Swarm apps tend to support one deployment per executable, it
-automatically adds a `jboss-web.xml` to the deployment if it doesn't already
-exist.  This is used to bind the deployment to the root of the web-server,
-instead of using the `.war`'s own name as the application context.
-
-    http://localhost:8080/
