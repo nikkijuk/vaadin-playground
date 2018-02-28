@@ -1,7 +1,7 @@
 com.jukkanikki.vaadin8Liberty
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+Template for a simple Vaadin application that requires a Servlet 3.1 container to run.
 
 Creation
 ========
@@ -32,16 +32,34 @@ https://openliberty.io/
 Test generated skeleton
 ========
 
-mvn install
+mvn clean install
+
+mvn liberty:run-server
+
+http://localhost:9080/vaadin8liberty/
+
+Add vaadin servlet
+========
+
+Add dependencies to pom.xml
+
+Add plugins and plugin configuration to pom.xml
+
+Add simple UI class and accompanying servlet definition
+
+Remove unnecessary or index.html, web.xml and HelloServlet.java
+
+Adjust or remove EmdppointIt test
 
 Run server
 ========
 
-You can run app many ways:
+So far only tested from command line
 
-* mvn package && java -jar target/example-vaadin-swarm.jar
-* mvn wildfly-swarm:run
-* In your IDE run the `org.wildfly.swarm.Swarm` class
+you can take example from this repository and run it
+
+running happens exaclty like testing of generated skeleton
+
 
 Open app
 ========
