@@ -27,7 +27,7 @@ public class EndpointIT {
 
     @BeforeClass
     public static void init() {
-        URL = "http://localhost:9080/vaadin8liberty/servlet";
+        URL = "http://localhost:9080/vaadin8liberty/";
     }
 
     @Test
@@ -41,9 +41,10 @@ public class EndpointIT {
 
             assertEquals("HTTP GET failed", HttpStatus.SC_OK, statusCode);
 
-            String response = method.getResponseBodyAsString(1000);
+            String response = method.getResponseBodyAsString(10000);
 
-            assertTrue("Unexpected response body", response.contains("Hello! How are you today?"));
+            // hmm... read whole html and do string matching? not exactly elegant
+            assertTrue("Unexpected response body", response.contains("vaadin8liberty"));
         } finally {
             method.releaseConnection();
         }  
