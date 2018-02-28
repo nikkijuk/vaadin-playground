@@ -24,8 +24,9 @@
         <vaadin.plugin.version>8.3.1</vaadin.plugin.version>
 
         <!-- If there are no local customizations, this can also be "fetch" or "cdn" -->
-        <vaadin.widgetset.mode>local</vaadin.widgetset.mode>
+        <!--<vaadin.widgetset.mode>local</vaadin.widgetset.mode> -->
         <!--<vaadin.widgetset.mode>fetch</vaadin.widgetset.mode> -->
+        <vaadin.widgetset.mode>cdn</vaadin.widgetset.mode>
 
     </properties>
     

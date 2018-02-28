@@ -21,6 +21,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
+//@Theme(ValoTheme.THEME_NAME)
 public class MyUI extends UI {
 
     @Override
@@ -41,7 +42,7 @@ public class MyUI extends UI {
         setContent(layout);
     }
 
-    @WebServlet(urlPatterns = "/liberty/*", name = "MyUIServlet", asyncSupported = true)
+    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
     }
