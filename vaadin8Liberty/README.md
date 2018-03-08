@@ -47,9 +47,9 @@ Add plugins and plugin configuration to pom.xml
 
 Add simple UI class and accompanying servlet definition
 
-Remove unnecessary or index.html, web.xml and HelloServlet.java
+Remove unnecessary index.html, web.xml and HelloServlet.java
 
-Adjust or remove EmdppointIt test
+Adjust or remove EndpointIt test case
 
 Run server
 ========
@@ -58,5 +58,5 @@ So far only tested from command line
 
 you can take example from this repository and run it
 
-running happens exaclty like testing of generated skeleton
+running happens exactly like testing of generated skeleton
 
