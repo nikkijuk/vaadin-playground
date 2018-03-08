@@ -22,6 +22,8 @@ My results
 
 No problems found - Vaadin 8 & Java 9 seem to work as expected
 
+In addition I did test Vaadin 7 & Java 9 - they worked also.. which is great!
+
 Test it yourself
 ========
 

@@ -16,6 +16,15 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+		<!-- vaadin 7.x -->
+		<!-- latest vaadin 7 works -->
+		<!--
+		<vaadin.version>7.7.13</vaadin.version>
+		<vaadin.plugin.version>7.7.13</vaadin.plugin.version>
+		-->
+
+		<!-- vaadin 8.x -->
+		<!-- latest vaadin 8 works -->
 		<vaadin.version>8.3.1</vaadin.version>
 		<vaadin.plugin.version>8.3.1</vaadin.plugin.version>
 
