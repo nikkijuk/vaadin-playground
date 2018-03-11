@@ -1,7 +1,7 @@
-com.jukkanikki.vaadin8swarm
+com.jukkanikki.vaadin8cdi
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container & CDI to run.
+Template for a simple Vaadin application that requires a Servlet 3.0 container & CDI (so: at least micro profile) to run.
 
 Creation
 ========
@@ -29,18 +29,23 @@ Example of using wildfly swarm with vaadin 7 is here
 
 https://github.com/wildfly-swarm/wildfly-swarm-examples
 
-For this example all compoents were actualized to newest versions
+For this example all components were actualized to newest versions
 
 - Wildfly Swarm 2018.3.0
 - CDI 2.0
 - Vaadin 8.3.1
 - Vaadin CDI addon 3.0
 
+Vaadin CDI helpers don't yet work due to incompatibility issue
+
+https://vaadin.com/directory/component/cdi-helpers
+
+https://github.com/mstahv/cdi-helpers/issues/9
+
 Swarm Maven Plugin
 ========
 
-This project is a traditional web app project, with maven packaging
-of `war` in the `pom.xml`
+This project is a traditional web app project, with maven packaging of `war` in the `pom.xml`
 
     <packaging>war</packaging>
 
@@ -48,8 +53,9 @@ But it has also speciality - swarm plugin
 
 https://wildfly-swarm.gitbooks.io/wildfly-swarm-users-guide/content/v/1.0.0.Alpha6/maven-plugin.html
 
-The project adds a `<plugin>` to configure `wildfly-swarm-plugin` to
-create the runnable `.jar`.
+The project adds a `<plugin>` to configure `wildfly-swarm-plugin` to create the runnable `.jar`.
+
+Maven swarm plugin is run at package phase
 
     <!-- https://mvnrepository.com/artifact/org.wildfly.swarm/wildfly-swarm-plugin -->
     <plugin>
