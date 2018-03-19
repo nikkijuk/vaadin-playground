@@ -24,7 +24,7 @@ import com.vaadin.ui.themes.ValoTheme;
  */
 @Theme("mytheme")
 //@Theme(ValoTheme.THEME_NAME)
-@CDIUI("")
+//@CDIUI("")
 public class MyUI extends UI {
 
 //    @Inject

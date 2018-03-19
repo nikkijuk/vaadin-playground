@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/vaadin8liberty.iml" filepath="$PROJECT_DIR$/vaadin8liberty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaadin8liberty.iml" filepath="$PROJECT_DIR$/vaadin8liberty.iml" />
     </modules>
   </component>
 </project>
