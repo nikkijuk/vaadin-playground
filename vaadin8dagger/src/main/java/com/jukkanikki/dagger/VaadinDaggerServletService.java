@@ -4,14 +4,13 @@ import com.vaadin.server.*;
 
 public class VaadinDaggerServletService extends VaadinServletService {
 
-    private final CDIUIProvider cdiuiProvider;
+    private final DaggerUIProvider uiProvider;
 
     protected final class SessionListenerImpl implements SessionInitListener,
             SessionDestroyListener {
         @Override
         public void sessionInit(SessionInitEvent event) {
-            getLogger().fine("Session init");
-            event.getSession().addUIProvider(cdiuiProvider);
+            event.getSession().addUIProvider(uiProvider);
         }
 
         @Override
@@ -36,7 +35,7 @@ public class VaadinDaggerServletService extends VaadinServletService {
             throws ServiceException {
         super(servlet, deploymentConfiguration);
 
-        cdiuiProvider = BeanProvider.getContextualReference(CDIUIProvider.class, false);
+        uiProvider = BeanProvider.getContextualReference(CDIUIProvider.class, false);
         SessionListenerImpl sessionListener = new SessionListenerImpl();
         addSessionInitListener(sessionListener);
         addSessionDestroyListener(sessionListener);

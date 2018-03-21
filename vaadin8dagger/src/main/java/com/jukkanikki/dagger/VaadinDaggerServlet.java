@@ -11,8 +11,7 @@ public class VaadinDaggerServlet extends VaadinServlet {
     protected VaadinServletService createServletService(
             DeploymentConfiguration deploymentConfiguration)
             throws ServiceException {
-        VaadinDaggerServletService service = new VaadinDaggerServletService(this,
-                deploymentConfiguration);
+        VaadinDaggerServletService service = new VaadinDaggerServletService(this, deploymentConfiguration);
         service.init();
         return service;
     }

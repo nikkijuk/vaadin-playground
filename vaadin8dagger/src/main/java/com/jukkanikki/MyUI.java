@@ -3,6 +3,7 @@ package com.jukkanikki;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 
+import com.jukkanikki.dagger.DaggerUI;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.cdi.CDIUI;
@@ -25,7 +26,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @Theme("mytheme")
 //@Theme(ValoTheme.THEME_NAME)
 //@CDIUI("")
-public class MyUI extends UI {
+public class MyUI extends DaggerUI {
 
 //    @Inject
 //    private Greeting greet;
@@ -33,6 +34,8 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        super.init(vaadinRequest);
+
         final VerticalLayout layout = new VerticalLayout();
 
         final TextField name = new TextField();
