@@ -1,4 +1,6 @@
 package com.jukkanikki.dagger;
 
-public class DaggerUIProvider {
+import com.vaadin.server.DefaultUIProvider;
+
+public class DaggerUIProvider extends DefaultUIProvider {
 }
