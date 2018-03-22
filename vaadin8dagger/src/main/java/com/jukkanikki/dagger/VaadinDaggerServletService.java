@@ -1,13 +1,14 @@
 package com.jukkanikki.dagger;
 
 import com.vaadin.server.*;
+import com.jukkanikki.dagger.*;
 
 import javax.inject.Inject;
 
 public class VaadinDaggerServletService extends VaadinServletService {
 
     @Inject
-    private final DaggerUIProvider uiProvider = null;
+    UIProvider uiProvider = null;
 
     protected final class SessionListenerImpl implements SessionInitListener,
             SessionDestroyListener {
@@ -29,13 +30,11 @@ public class VaadinDaggerServletService extends VaadinServletService {
             throws ServiceException {
         super(servlet, deploymentConfiguration);
 
-
         AppComponent component = DaggerAppComponent.builder()
                 .vaadinDaggerModule(new VaadinDaggerModule())
                 .build();
 
-        uiProvider = AppComponent.getUIProvider();
-
+        uiProvider = component.getUIProvider();
 
         // init and destroy logic
         SessionListenerImpl sessionListener = new SessionListenerImpl();

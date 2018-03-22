@@ -8,7 +8,7 @@ import dagger.Module;
 public class VaadinDaggerModule {
 
     @Provides
-    public UIProvider getUiProvider(){
+    public UIProvider getUIProvider(){
         return new DaggerUIProvider ();
     }
 
