@@ -11,13 +11,13 @@ import org.openqa.selenium.Dimension;
 
 import static org.junit.Assert.*;
 
-@RunWith(Arquillian.class)
 // Works manually, as test runners needs to start server first, and this is not yet defined
 //@Ignore
+@RunWith(Arquillian.class)
 public class MyUiTest {
 
     @Drone
-    private PhantomJSDriver browser;
+    PhantomJSDriver browser;
 
     @Test
     public void testIt() throws Exception {
