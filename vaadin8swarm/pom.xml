@@ -14,16 +14,17 @@
 	</prerequisites>
 
 	<properties>
-		<vaadin.version>8.3.0</vaadin.version>
-		<vaadin.plugin.version>8.3.0</vaadin.plugin.version>
-		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- If there are no local customizations, this can also be "fetch" or "cdn" -->
 		<vaadin.widgetset.mode>local</vaadin.widgetset.mode>
 
-        <version.wildfly-swarm>2017.11.0</version.wildfly-swarm>
+		<version.vaadin>8.3.3</version.vaadin>
+		<version.vaadin.plugin>8.3.3</version.vaadin.plugin>
+
+        <version.wildfly-swarm>2018.4.1</version.wildfly-swarm>
+		<version.arquillian>2018.4.1</version.arquillian>
 	</properties>
 
 	<repositories>
@@ -38,14 +39,66 @@
 			<dependency>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-bom</artifactId>
-				<version>${vaadin.version}</version>
+				<version>${version.vaadin}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<!--https://mvnrepository.com/artifact/org.wildfly.swarm/bom-all -->
+			<dependency>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.jboss.arquillian/arquillian-bom -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.4.0.Final</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!--https://mvnrepository.com/artifact/org.jboss.arquillian.extension/arquillian-drone-bom -->
+			<dependency>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-drone-bom</artifactId>
+				<version>2.5.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+
+		<!--http://mvnrepository.com/artifact/org.wildfly.swarm/arquillian -->
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>arquillian</artifactId>
+			<version>${version.arquillian}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--https://mvnrepository.com/artifact/org.jboss.arquillian.graphene/graphene-webdriver -->
+		<dependency>
+			<groupId>org.jboss.arquillian.graphene</groupId>
+			<artifactId>graphene-webdriver</artifactId>
+			<version>2.3.2</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -73,10 +126,18 @@
 	<build>
 		<plugins>
 
+			<!--https://mvnrepository.com/artifact/org.wildfly.swarm/wildfly-swarm-plugin -->
 			<plugin>
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>wildfly-swarm-plugin</artifactId>
-				<version>${version.wildfly-swarm}</version>
+
+				<!-- if you don't manage to start read here -->
+				<!-- https://stackoverflow.com/questions/37273621/fail-to-start-jax-rs-service-on-wildfly-swarm -->
+				<configuration>
+					<properties>
+						<java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+					</properties>
+				</configuration>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -97,10 +158,11 @@
 					<packagingExcludes>WEB-INF/classes/VAADIN/widgetsets/WEB-INF/**</packagingExcludes>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>
-				<version>${vaadin.plugin.version}</version>
+				<version>${version.vaadin.plugin}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -113,6 +175,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -131,16 +194,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- The Jetty plugin allows us to easily test the development build by
-				running jetty:run on the command line. -->
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.plugin.version}</version>
-				<configuration>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
