@@ -12,7 +12,7 @@ import org.openqa.selenium.Dimension;
 import static org.junit.Assert.*;
 
 // Works manually, as test runners needs to start server first, and this is not yet defined
-//@Ignore
+@Ignore
 @RunWith(Arquillian.class)
 public class MyUiTest {
 
